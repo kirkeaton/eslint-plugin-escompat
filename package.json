@@ -25,7 +25,8 @@
     "@babel/plugin-proposal-pipeline-operator": "^7.18.2",
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-typescript": "^7.17.12",
-    "eslint": "^8.18.0",
+    "eslint-v8": "npm:eslint@^8.18.0",
+    "eslint-v9": "npm:eslint@^9.0.0",
     "mocha": "^10.0.0"
   },
   "peerDependencies": {
