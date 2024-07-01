@@ -3,7 +3,7 @@ var RuleTester = require('eslint').RuleTester
 
 var ruleTester = new RuleTester({parserOptions: {ecmaVersion: 2018}})
 
-ruleTester.run('no-async-generator', rule, {
+ruleTester.run('no-async-iteration', rule, {
   valid: [
     {code: 'async function foo() { for(const a of b) {} }'}, 
   ],
