@@ -1,27 +1,29 @@
-var rule = require('../lib/rules/no-optional-catch')
-var RuleTester = require('eslint').RuleTester
+var rule = require("../lib/rules/no-optional-catch");
+var RuleTesterV8 = require("eslint-v8").RuleTester;
+var RuleTesterV9 = require("eslint-v9").RuleTester;
 
-var ruleTesterBabel = new RuleTester({parser: require.resolve('@babel/eslint-parser')})
-var ruleTester = new RuleTester({parserOptions: {ecmaVersion: 2019}})
+var ruleTesterBabel = new RuleTesterV8({
+  parser: require.resolve("@babel/eslint-parser"),
+});
+var ruleTesterV8 = new RuleTesterV8({ parserOptions: { ecmaVersion: 2019 } });
 
 const tests = {
   valid: [
-    {code: 'try { foo() } catch (error) {}'},
-    {code: 'try { foo() } catch (e) {}'},
-    {code: 'try { foo() } catch (_) {}'}
+    { code: "try { foo() } catch (error) {}" },
+    { code: "try { foo() } catch (e) {}" },
+    { code: "try { foo() } catch (_) {}" },
   ],
   invalid: [
     {
-      code: 'try { foo() } catch {}',
+      code: "try { foo() } catch {}",
       errors: [
         {
-          message:
-            'Optional Catch Parameters are not supported in undefined'
-        }
-      ]
-    }
-  ]
-}
+          message: "Optional Catch Parameters are not supported in undefined",
+        },
+      ],
+    },
+  ],
+};
 
-ruleTester.run('no-optional-catch', rule, tests)
-ruleTesterBabel.run('no-optional-catch (babel)', rule, tests)
+ruleTesterV8.run("no-optional-catch", rule, tests);
+ruleTesterBabel.run("no-optional-catch (babel)", rule, tests);

@@ -1,21 +1,21 @@
-var rule = require('../lib/rules/no-pipeline-operator')
-var RuleTester = require('eslint').RuleTester
+var rule = require("../lib/rules/no-pipeline-operator");
+var RuleTesterV8 = require("eslint-v8").RuleTester;
+var RuleTesterV9 = require("eslint-v9").RuleTester;
 
-var ruleTester = new RuleTester({parser: require.resolve('@babel/eslint-parser')})
+var ruleTesterV8 = new RuleTesterV8({
+  parser: require.resolve("@babel/eslint-parser"),
+});
 
-ruleTester.run('no-pipeline-operator', rule, {
-  valid: [
-    {code: 'bar(foo)'}, 
-  ],
+ruleTesterV8.run("no-pipeline-operator", rule, {
+  valid: [{ code: "bar(foo)" }],
   invalid: [
     {
-      code: 'foo |> bar(^^)',
+      code: "foo |> bar(^^)",
       errors: [
         {
-          message:
-            'The Pipeline Operator is not supported in undefined'
-        }
-      ]
-    }
-  ]
-})
+          message: "The Pipeline Operator is not supported in undefined",
+        },
+      ],
+    },
+  ],
+});

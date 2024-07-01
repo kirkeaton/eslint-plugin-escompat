@@ -1,21 +1,19 @@
-var rule = require('../lib/rules/no-async-iteration')
-var RuleTester = require('eslint').RuleTester
+const rule = require("../lib/rules/no-async-iteration");
+const RuleTesterV8 = require("eslint-v8").RuleTester;
+const RuleTesterV9 = require("eslint-v9").RuleTester;
 
-var ruleTester = new RuleTester({parserOptions: {ecmaVersion: 2018}})
+const ruleTesterV8 = new RuleTesterV8({ parserOptions: { ecmaVersion: 2018 } });
 
-ruleTester.run('no-async-iteration', rule, {
-  valid: [
-    {code: 'async function foo() { for(const a of b) {} }'}, 
-  ],
+ruleTesterV8.run("no-async-iteration", rule, {
+  valid: [{ code: "async function foo() { for(const a of b) {} }" }],
   invalid: [
     {
-      code: 'async function foo() { for await(const a of b) {} }', 
+      code: "async function foo() { for await(const a of b) {} }",
       errors: [
         {
-          message:
-            'Async Iteration is not supported in undefined'
-        }
-      ]
-    }
-  ]
-})
+          message: "Async Iteration is not supported in undefined",
+        },
+      ],
+    },
+  ],
+});

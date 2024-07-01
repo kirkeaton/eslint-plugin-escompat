@@ -16,7 +16,7 @@
   "main": "lib/index.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "npm run lint && mocha"
+    "test": "mocha"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.18.2",

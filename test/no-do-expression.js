@@ -1,21 +1,22 @@
-var rule = require('../lib/rules/no-do-expression')
-var RuleTester = require('eslint').RuleTester
+var rule = require("../lib/rules/no-do-expression");
+var RuleTesterV8 = require("eslint-v8").RuleTester;
+var RuleTesterV9 = require("eslint-v9").RuleTester;
 
-var ruleTester = new RuleTester({parser: require.resolve('@babel/eslint-parser'), parserOptions: {ecmaVersion: 2018}})
+var ruleTesterV8 = new RuleTesterV8({
+  parser: require.resolve("@babel/eslint-parser"),
+  parserOptions: { ecmaVersion: 2018 },
+});
 
-ruleTester.run('no-do-expression', rule, {
-  valid: [
-    {code: '() => { return 1 > 0 }'}, 
-  ],
+ruleTesterV8.run("no-do-expression", rule, {
+  valid: [{ code: "() => { return 1 > 0 }" }],
   invalid: [
     {
-      code: '() => { return do { return 1 > 0 } === true }',
+      code: "() => { return do { return 1 > 0 } === true }",
       errors: [
         {
-          message:
-            'Do Expressions are not supported in undefined'
-        }
-      ]
-    }
-  ]
-})
+          message: "Do Expressions are not supported in undefined",
+        },
+      ],
+    },
+  ],
+});
